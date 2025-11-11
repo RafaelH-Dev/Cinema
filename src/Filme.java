@@ -1,21 +1,20 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Filme {
     private String nomeFilme;
     private String generoFilme;
     private int duracaoMinutos;
     private double classificacaoFilme;
-    public static final int QUANTIDADE_DE_INGRESSOS_DISPONIVEIS = 50;
-    private double[] notaFilme = new double[QUANTIDADE_DE_INGRESSOS_DISPONIVEIS];
-    private int quantidadeDeAvaliacoes = 0;
+    ArrayList<Double> notas = new ArrayList<Double>();
 
-    Scanner input = new Scanner(System.in);
-
-    public Filme(String nomeFilme, String generoFilme, int duracaoMinutos, double classificacaoFilme) {
+    public Filme(String nomeFilme, String generoFilme, int duracaoMinutos) {
+        setNomeFilme(nomeFilme);
+        setGeneroFilme(generoFilme);
+        setDuracaoMinutos(duracaoMinutos);
 
     }
 
-    public void setnomeFilme(String nomeFilme) {
+    public void setNomeFilme(String nomeFilme) {
         this.nomeFilme = nomeFilme;
     }
 
@@ -25,15 +24,6 @@ public class Filme {
 
     public void setDuracaoMinutos(int duracaoMinutos) {
         this.duracaoMinutos = duracaoMinutos;
-    }
-
-    public void setClassificacaoFilme(double classificacaoFilme) {
-        this.classificacaoFilme = classificacaoFilme;
-    }
-
-    public void setNotaFilme(int indice, double nota) {
-        this.notaFilme[indice] = nota;
-        indice++;
     }
 
     public String getNomeFilme() {
@@ -53,18 +43,21 @@ public class Filme {
     }
 
     public void avaliarFilme(double nota) {
-        notaFilme[quantidadeDeAvaliacoes++] = nota;
+        notas.add(nota);
+        mediaNotaFilme();
     }
-
 
     public void mediaNotaFilme() {
-        double notasSoma = 0;
-        for (int i = 0; i <quantidadeDeAvaliacoes; i++) {
-            notasSoma+=notaFilme[i];
+        if (notas.isEmpty()) {
+            classificacaoFilme = 0;
+        } else {
+            double notasSoma = 0;
+            for (double nota : notas) {
+                notasSoma += nota;
+            }
+            classificacaoFilme = notasSoma / notas.size();
         }
-        classificacaoFilme = notasSoma / quantidadeDeAvaliacoes;
     }
-
 }
 
 
