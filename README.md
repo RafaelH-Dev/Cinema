@@ -1,13 +1,12 @@
-## CrudEx2
-**Filme**
+# Cinema
+## Filme
+**Função:** CRUD de salas e filmes  
+**Usa:**Sala e Filme  
+
 ```Java
-public void mediaNotaFilme() {
-    double notasSoma = 0;
-    for (int i = 0; i < quantidadeDeAvaliacoes; i++) {
-        notasSoma += notaFilme[i];
-    }
-    classificacaoFilme = notasSoma / quantidadeDeAvaliacoes;
-}
+private static ArrayList<Sala> minhasSalas = new ArrayList<>();
+private static ArrayList<Filme> meusFilmes = new ArrayList<>();
+
 ```
-O método calcula a média das notas com valores recebidos pelo usuário
+Arrays que armazenam filmes e salas cadastradas
 

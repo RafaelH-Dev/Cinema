@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Filme {
     private String nomeFilme;
     private String generoFilme;
@@ -11,6 +10,7 @@ public class Filme {
         setNomeFilme(nomeFilme);
         setGeneroFilme(generoFilme);
         setDuracaoMinutos(duracaoMinutos);
+        Cinema.cadastrarFilmeSemSala(this);
 
     }
 
@@ -57,6 +57,11 @@ public class Filme {
             }
             classificacaoFilme = notasSoma / notas.size();
         }
+    }
+    @Override
+    public String toString() {
+        return String.format("Filme: %s | Gênero: %s | Duração: %d min | Nota média: %.1f | Avaliações: %d",
+                nomeFilme, generoFilme, duracaoMinutos, classificacaoFilme, notas.size());
     }
 }
 
