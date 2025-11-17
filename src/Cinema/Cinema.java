@@ -1,3 +1,5 @@
+package Cinema;
+
 import java.util.ArrayList;
 
 public class Cinema {
@@ -36,15 +38,12 @@ public class Cinema {
     }
 
     public static boolean venderIngressos(String numeroDaSala) {
-        Sala novaSala = verificadorSala(numeroDaSala);
-        if (novaSala != null) {
-            if (novaSala.getCapacidadeIngressos() > novaSala.getIngressosVendidos()) {
-                novaSala.venderIngresso();
-                return true;
+        Sala sala = verificadorSala(numeroDaSala);
+            if(sala!=null) {
+                return sala.venderIngresso();
             }
+            return false;
         }
-        return false;
-    }
 
     private static Filme verificadorFilme(String nomeDoFilme) {
         for (Filme filme : meusFilmes) {
@@ -56,18 +55,20 @@ public class Cinema {
     }
 
     public static boolean avaliarFilme(String nomeDoFilme, double nota) {
-        Filme novoFilme = verificadorFilme(nomeDoFilme);
-        if (novoFilme != null) {
-            novoFilme.avaliarFilme(nota);
+        Filme filme = verificadorFilme(nomeDoFilme);
+        if (filme != null) {
+            filme.adicionarNota(nota);
             return true;
         }
         return false;
     }
-    public static void exibirFilmes(){
-        for(Filme filme : meusFilmes){
+
+    public static void exibirFilmes() {
+        for (Filme filme : meusFilmes) {
             System.out.println(filme);
         }
     }
+
     public static void cadastrarFilme(String numeroDaSala, Filme novoFilme) {
         for (Sala sala : minhasSalas) {
             if (sala.getNumeroSala().equals(numeroDaSala)) {
@@ -83,30 +84,43 @@ public class Cinema {
                 return false;
             }
         }
-        meusFilmes.add(novoFilme);
-        return true;
+        return meusFilmes.add(novoFilme);
     }
 
     public static boolean colocarFilmeSemSalaEmSala(String numeroDaSala, String nomeDoFilme) {
         Sala sala = verificadorSala(numeroDaSala);
         Filme filme = verificadorFilme(nomeDoFilme);
-        if (filme != null && sala != null){
+        if (filme != null && sala != null) {
             sala.setFilmeEmExibicao(filme);
             return true;
         }
         return false;
     }
 
+    //erro documentar
     public static boolean removerFilme(String nomeDoFilme) {
         Filme filme = verificadorFilme(nomeDoFilme);
         if (filme != null) {
-            for(Sala sala : minhasSalas){
-                if(sala.getFilmeEmExibicao()==filme){
+            for (Sala sala : minhasSalas) {
+                if (sala.getFilmeEmExibicao() == filme) {
                     sala.setFilmeEmExibicao(null);
                 }
             }
-            meusFilmes.remove(filme);
-            return true;
+            return meusFilmes.remove(filme);
+        }
+        return false;
+    }
+
+    public static boolean removerFilmeDaSala(String numeroDaSala, String nomeDoFilme) {
+        Filme filme = verificadorFilme(nomeDoFilme);
+        Sala sala = verificadorSala(numeroDaSala);
+        if (filme != null) {
+            for (Sala salas : minhasSalas) {
+                if (salas.getFilmeEmExibicao() == filme && salas == sala) {
+                    salas.setFilmeEmExibicao(null);
+                    return true;
+                }
+            }
         }
         return false;
     }

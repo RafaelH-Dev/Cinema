@@ -1,10 +1,12 @@
-import java.util.ArrayList;
+package Cinema;
+
 public class Filme {
     private String nomeFilme;
     private String generoFilme;
     private int duracaoMinutos;
-    private double classificacaoFilme;
-    ArrayList<Double> notas = new ArrayList<Double>();
+
+
+   private Notas notas = new Notas();
 
     public Filme(String nomeFilme, String generoFilme, int duracaoMinutos) {
         setNomeFilme(nomeFilme);
@@ -39,29 +41,16 @@ public class Filme {
     }
 
     public double getClassificacaoFilme() {
-        return classificacaoFilme;
+        return notas.getClassificacaoFilme();
+    }
+    public void adicionarNota(double nota){
+        notas.adicionarNota(nota);
     }
 
-    public void avaliarFilme(double nota) {
-        notas.add(nota);
-        mediaNotaFilme();
-    }
-
-    public void mediaNotaFilme() {
-        if (notas.isEmpty()) {
-            classificacaoFilme = 0;
-        } else {
-            double notasSoma = 0;
-            for (double nota : notas) {
-                notasSoma += nota;
-            }
-            classificacaoFilme = notasSoma / notas.size();
-        }
-    }
     @Override
     public String toString() {
-        return String.format("Filme: %s | Gênero: %s | Duração: %d min | Nota média: %.1f | Avaliações: %d",
-                nomeFilme, generoFilme, duracaoMinutos, classificacaoFilme, notas.size());
+        return String.format("Filme: %s | Gênero: %s | Duração: %d min | Avaliação do filme: %.1f | Avaliações: %d",
+                getNomeFilme(), getGeneroFilme(), getDuracaoMinutos(), getClassificacaoFilme(), notas.getAvaliacoes());
     }
 }
 

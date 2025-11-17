@@ -1,12 +1,15 @@
+package Cinema;
+
 public class Sala {
     private String numeroSala;
     private int capacidadeIngressos;
-    private int ingressosVendidos;
     private Filme filmeEmExibicao;
+    private Ingressos ingresso;
 
     public Sala(String numeroSala, int capacidadeIngressos) {
         setNumeroSala(numeroSala);
         setCapacidadeIngressos(capacidadeIngressos);
+        ingresso = new Ingressos(capacidadeIngressos);
         Cinema.cadastrarSala(this);
     }
 
@@ -14,6 +17,7 @@ public class Sala {
         setNumeroSala(numeroSala);
         setFilmeEmExibicao(filmeEmExibicao);
         setCapacidadeIngressos(capacidadeIngressos);
+        ingresso = new Ingressos(capacidadeIngressos);
         Cinema.cadastrarSala(this);
 
     }
@@ -24,10 +28,6 @@ public class Sala {
 
     public void setNumeroSala(String numeroSala) {
         this.numeroSala = numeroSala;
-    }
-
-    public void setIngressosVendidos(int ingressosVendidos) {
-        this.ingressosVendidos = ingressosVendidos;
     }
 
     public void setFilmeEmExibicao(Filme filmeEmExibicao) {
@@ -42,28 +42,37 @@ public class Sala {
         return capacidadeIngressos;
     }
 
-    public int getIngressosVendidos() {
-        return ingressosVendidos;
-    }
-
     public Filme getFilmeEmExibicao() {
         return filmeEmExibicao;
     }
 
-    public void venderIngresso() {
-        ingressosVendidos++;
+    public String getNomeFilmeOuPadrao() {
+        if (filmeEmExibicao == null) {
+            return "Filme não cadastrado";
+        }
+        return filmeEmExibicao.getNomeFilme();
     }
 
-    public int ocupacaoDeIngressos() {
-        return capacidadeIngressos - ingressosVendidos;
+    public double getAvaliacaoFilmeOuZero() {
+        if (filmeEmExibicao == null) {
+            return 0.0;
+        }
+        return filmeEmExibicao.getClassificacaoFilme();
+    }
+
+    public boolean venderIngresso() {
+        return ingresso.venderIngressos();
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Número da sala: %s\nCapacidade de ingressos: %d\nIngressos vendidos: %d\nFilme em exibição: %s",
-                numeroSala, capacidadeIngressos, ingressosVendidos, getFilmeEmExibicao() == null?"Filme não cadastrado":filmeEmExibicao.getNomeFilme()
+                "Número da sala: %s\nCapacidade de ingressos: %d\nIngressos vendidos: %d\nFilme em exibição: %s\nAvaliação do Filme: %.1f",
+                getNumeroSala(),
+                getCapacidadeIngressos(),
+                ingresso.getIngressosVendidos(),
+                getNomeFilmeOuPadrao(),
+                getAvaliacaoFilmeOuZero()
         );
     }
-
 }
