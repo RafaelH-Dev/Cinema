@@ -25,6 +25,7 @@ public class MenuSala {
                     System.out.println("Digite a capacidade máxima da sala:");
                     capacidadeDeIngressos = input.nextInt();
                     Sala sala = new Sala(numeroDaSala, capacidadeDeIngressos);
+                    Cinema.cadastrarSala(sala);
                     break;
                 }
                 case 2: {

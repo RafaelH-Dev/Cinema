@@ -10,7 +10,6 @@ public class Sala {
         setNumeroSala(numeroSala);
         setCapacidadeIngressos(capacidadeIngressos);
         ingresso = new Ingressos(capacidadeIngressos);
-        Cinema.cadastrarSala(this);
     }
 
     public Sala(String numeroSala, Filme filmeEmExibicao, int capacidadeIngressos) {
@@ -18,7 +17,6 @@ public class Sala {
         setFilmeEmExibicao(filmeEmExibicao);
         setCapacidadeIngressos(capacidadeIngressos);
         ingresso = new Ingressos(capacidadeIngressos);
-        Cinema.cadastrarSala(this);
 
     }
 

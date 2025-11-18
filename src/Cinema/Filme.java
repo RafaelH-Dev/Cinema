@@ -12,8 +12,6 @@ public class Filme {
         setNomeFilme(nomeFilme);
         setGeneroFilme(generoFilme);
         setDuracaoMinutos(duracaoMinutos);
-        Cinema.cadastrarFilmeSemSala(this);
-
     }
 
     public void setNomeFilme(String nomeFilme) {

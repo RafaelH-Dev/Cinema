@@ -92,7 +92,6 @@ Criação de um Rich Object ```filmeEmExibição``` para filmes em exibição ut
     setNumeroSala(numeroSala);
     setCapacidadeIngressos(capacidadeIngressos);
     ingresso = new Ingressos(capacidadeIngressos);
-    Cinema.cadastrarSala(this);
 }
 
     public Sala(String numeroSala, Filme filmeEmExibicao, int capacidadeIngressos) {
@@ -100,8 +99,6 @@ Criação de um Rich Object ```filmeEmExibição``` para filmes em exibição ut
         setFilmeEmExibicao(filmeEmExibicao);
         setCapacidadeIngressos(capacidadeIngressos);
         ingresso = new Ingressos(capacidadeIngressos);
-        Cinema.cadastrarSala(this);
-
 }
 ```  
   
